@@ -37,37 +37,10 @@ def process_graph(G):
     print "Safe nodes : ", safe_nodes
     print "Infected nodes : ", infected_nodes
 
-    draw_graph(G, safe_nodes, infected_nodes)
 
-
-
-def draw_graph(G, safe_nodes, infected_nodes):
-
-    """
-    This function is used to draw status of a given graph
-
-    :param G: given networkx graph
-    :param safe_nodes: safe nodes list
-    :param infected_nodes: infected nodes list
-    """
-
-    # positions for all nodes
-    pos = nx.spring_layout(G)
-
-    # safe nodes
-    nx.draw_networkx_nodes(G, pos, nodelist=safe_nodes, node_size=30, node_color='y')
-
-    # infected_nodes
-    nx.draw_networkx_nodes(G, pos, nodelist=infected_nodes, node_size=50, node_color='r')
-
-    # edges
-    nx.draw_networkx_edges(G,pos, width=1)
-
-    # labels for nodes
-    # nx.draw_networkx_labels(G,pos,font_size=10,font_family='sans-serif')
-
-    plt.show() # display
-
+    # draw the graph
+    from draw_graph import draw_graph
+    draw_graph(G, safe_nodes, infected_nodes, G.edges(), None)
 
 
 if __name__ == "__main__":
