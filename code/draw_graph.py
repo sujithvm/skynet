@@ -20,10 +20,10 @@ def draw_graph(G, nodes_list1, nodes_list2, edge_list1, edge_list2):
     pos = nx.spring_layout(G)
 
     # draw set of nodes
-    nx.draw_networkx_nodes(G, pos, nodelist=nodes_list1, node_size=30, node_color='y')
+    nx.draw_networkx_nodes(G, pos, nodelist=nodes_list1, node_size=30, node_color='r')
 
     # draw set of nodes
-    nx.draw_networkx_nodes(G, pos, nodelist=nodes_list2, node_size=50, node_color='r')
+    nx.draw_networkx_nodes(G, pos, nodelist=nodes_list2, node_size=50, node_color='y')
 
 
     # draw set of edges

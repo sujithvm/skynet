@@ -106,3 +106,18 @@ if __name__ == "__main__":
     print "Vertex cover algorithm 2 : "
     print "Size : ", len(vc2)
     print "nodes : ", vc2
+
+    # draw graph
+    from draw_graph import draw_graph
+    nodes_list1 = vc1
+    nodes_list2 = G.nodes()
+    for node in nodes_list1:
+        nodes_list2.remove(node)
+    draw_graph(G, nodes_list1, nodes_list2, G.edges(), None)
+
+    nodes_list1 = vc2
+    nodes_list2 = G.nodes()
+    for node in nodes_list1:
+        nodes_list2.remove(node)
+    draw_graph(G, nodes_list1, nodes_list2, G.edges(), None)
+
