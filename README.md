@@ -1,2 +1,2 @@
 # skynet
-Network Analysis
+Network Analysis: finding infected nodes and seeding of a network 
