@@ -48,7 +48,7 @@ def approximate_vertex_cover_1(G):
 
 
 
-def approximate_vertex_cover_2(G):
+def dominating_set((G):
 
     """
     Finds a greedy approximation for a minimal vertex cover of a specified
@@ -97,13 +97,13 @@ if __name__ == "__main__":
 
     # find approximate vertex cover
     vc1 = approximate_vertex_cover_1(G)
-    vc2 = approximate_vertex_cover_2(G)
+    vc2 = dominating_set(G)
 
     print "Vertex cover algorithm 1 : "
     print "Size : ", len(vc1)
     print "nodes : ", vc1
 
-    print "Vertex cover algorithm 2 : "
+    print "Dominating set : "
     print "Size : ", len(vc2)
     print "nodes : ", vc2
 
