@@ -36,7 +36,7 @@ def seed():
             if not x in infected_nodes:
                 infected_nodes.append(x)
 
-        print "Time: ", t + 15
+        print "Time: ", t + 1
         #print "Infected nodes: ", infected_nodes
         print "Count: ", len(infected_nodes)
 
