@@ -8,7 +8,7 @@ def seed():
     from read_graph import read_graph
     G = read_graph("data/CA-GrQc.txt")
 
-    print "nodes", len(G.nodes())
+    print "Number of nodes: ", len(G.nodes())
 
     v=dominating_set(G)
     v10=[]
@@ -16,7 +16,7 @@ def seed():
     for i in range(0,10,1):
         v10.append(v[i])
 
-    print v10
+    print "Initial vertices selected: ", v10
 
     current_infected_nodes = v10
     time = int(raw_input("Enter time elapsed : "))
@@ -27,9 +27,9 @@ def seed():
 
 
     for t in range(0, time):
-        temp = []
+        temp = set()
         for x in current_infected_nodes:
-            temp.extend(G.neighbors(x))
+            temp = temp.union(set(G.neighbors(x)))
         current_infected_nodes = temp
 
         for x in temp :
