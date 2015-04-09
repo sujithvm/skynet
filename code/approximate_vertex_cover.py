@@ -48,7 +48,7 @@ def approximate_vertex_cover_1(G):
 
 
 
-def dominating_set((G):
+def dominating_set(G):
 
     """
     Finds a greedy approximation for a minimal vertex cover of a specified

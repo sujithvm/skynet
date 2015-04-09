@@ -1,6 +1,6 @@
 __author__ = 'Archana V Menon, Sujith V'
 
-from approximate_vertex_cover import approximate_vertex_cover_2
+from approximate_vertex_cover import dominating_set
 
 def seed():
 
@@ -10,7 +10,7 @@ def seed():
 
     print "nodes", len(G.nodes())
 
-    v=approximate_vertex_cover_2(G)
+    v=dominating_set(G)
     v10=[]
 
     for i in range(0,10,1):

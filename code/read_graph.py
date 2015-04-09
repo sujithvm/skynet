@@ -34,6 +34,6 @@ def read_graph(file_path):
     # G.add_edges_from(edge_list)
 
     # adding only 1st 1000 edges to graph for testing purpose only
-    G.add_edges_from(edge_list[:1000])
+    G.add_edges_from(edge_list)
 
     return G
