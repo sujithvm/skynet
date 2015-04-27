@@ -34,8 +34,8 @@ def process_graph(G):
     for x in infected_nodes:
         safe_nodes.remove(x)
 
-    print "Safe nodes : ", safe_nodes
-    print "Infected nodes : ", infected_nodes
+    print "\nSafe nodes : ", safe_nodes
+    print "\nInfected nodes : ", infected_nodes
 
 
     # draw the graph

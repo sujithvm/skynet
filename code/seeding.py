@@ -16,15 +16,16 @@ def seed():
     for i in range(0,10,1):
         v10.append(v[i])
 
-    print "Initial vertices selected: ", v10
+    print "\nInitial 10 nodes selected from dominating set: ", v10
 
     current_infected_nodes = v10
-    time = int(raw_input("Enter time elapsed : "))
+    time = int(raw_input("\nEnter time elapsed : "))
 
     infected_nodes = []
     infected_nodes.extend(current_infected_nodes)
 
-
+    print ""
+    print "Time", "\t", "Number of infected nodes"
 
     for t in range(0, time):
         temp = set()
@@ -36,18 +37,15 @@ def seed():
             if not x in infected_nodes:
                 infected_nodes.append(x)
 
-        print "Time: ", t + 1
-        #print "Infected nodes: ", infected_nodes
-        print "Count: ", len(infected_nodes)
+        print t + 1, "\t\t", len(infected_nodes)
 
-        print ""
 
     safe_nodes = G.nodes()
     for x in infected_nodes:
         safe_nodes.remove(x)
 
-    print "Safe nodes : ", safe_nodes
-    print "Infected nodes : ", infected_nodes
+    print "\nSafe nodes : ", safe_nodes
+    print "\nInfected nodes : ", infected_nodes
 
 
     # draw the graph
