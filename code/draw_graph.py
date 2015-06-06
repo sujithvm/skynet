@@ -36,3 +36,10 @@ def draw_graph(G, nodes_list1, nodes_list2, edge_list1, edge_list2):
     # nx.draw_networkx_labels(G,pos,font_size=10,font_family='sans-serif')
 
     plt.show() # display
+
+
+def draw_curve(x, y):
+    plt.plot(x, y)
+    plt.axis([0, 100, 0, 6000])
+
+    plt.show()

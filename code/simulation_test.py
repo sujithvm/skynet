@@ -42,15 +42,25 @@ def process_graph(G):
     from draw_graph import draw_graph
     draw_graph(G, safe_nodes, infected_nodes, G.edges(), None)
 
+def curve():
+
+    plt.plot([1,2,3,4], [1,4,9,16], 'ro', linewidth=2.0)
+    plt.axis([0, 6, 0, 20])
+
+    plt.show()
+
+
 
 if __name__ == "__main__":
 
     # get graph
-    from read_graph import read_graph
-    G = read_graph("data/roadNet-CA.txt")
+    # from read_graph import read_graph
+    # G = read_graph("data/roadNet-CA.txt")
 
     # process graph
-    process_graph(G)
+    # process_graph(G)
 
+
+    curve()
 
 

@@ -92,8 +92,9 @@ def dominating_set(G):
 if __name__ == "__main__":
 
     # get graph
-    from read_graph import read_graph
-    G = read_graph("data/roadNet-CA.txt")
+    from read_graph import read_graph, test_graph1, test_graph2
+    # G = read_graph("data/roadNet-CA.txt")
+    G = test_graph2()
 
     # find approximate vertex cover
     vc1 = approximate_vertex_cover_1(G)

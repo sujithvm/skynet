@@ -21,8 +21,13 @@ def seed():
     current_infected_nodes = v10
     time = int(raw_input("\nEnter time elapsed : "))
 
-    infected_nodes = []
-    infected_nodes.extend(current_infected_nodes)
+    infected_nodes = ['21013', '15245', '13930', '13802',  '2655',  '7651', '22602', '14266',  '2711',  '4365']
+    # infected_nodes.extend(current_infected_nodes)
+
+    x_cor = []
+    y_cor = []
+    x_cor.append(0)
+    y_cor.append(len(infected_nodes))
 
     print ""
     print "Time", "\t", "Number of infected nodes"
@@ -39,14 +44,25 @@ def seed():
 
         print t + 1, "\t\t", len(infected_nodes)
 
+        x_cor.append(t + 1)
+        y_cor.append(len(infected_nodes))
+
 
     safe_nodes = G.nodes()
     for x in infected_nodes:
-        safe_nodes.remove(x)
+        if (x in safe_nodes):
+            safe_nodes.remove(x)
+        else :
+            print x
 
     print "\nSafe nodes : ", safe_nodes
     print "\nInfected nodes : ", infected_nodes
 
+    from draw_graph import draw_graph
+    draw_graph(G, nodes_list1=infected_nodes, nodes_list2=safe_nodes, edge_list1=G.edges(), edge_list2=None)
+
+    #from draw_graph import draw_curve
+    #draw_curve(x_cor, y_cor)
 
     # draw the graph
     #from draw_graph import draw_graph_1
