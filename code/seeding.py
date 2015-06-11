@@ -21,8 +21,8 @@ def seed():
     current_infected_nodes = v10
     time = int(raw_input("\nEnter time elapsed : "))
 
-    infected_nodes = ['21013', '15245', '13930', '13802',  '2655',  '7651', '22602', '14266',  '2711',  '4365']
-    # infected_nodes.extend(current_infected_nodes)
+    infected_nodes = []
+    infected_nodes.extend(current_infected_nodes)
 
     x_cor = []
     y_cor = []
@@ -52,8 +52,6 @@ def seed():
     for x in infected_nodes:
         if (x in safe_nodes):
             safe_nodes.remove(x)
-        else :
-            print x
 
     print "\nSafe nodes : ", safe_nodes
     print "\nInfected nodes : ", infected_nodes
