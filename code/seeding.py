@@ -1,25 +1,15 @@
 __author__ = 'Archana V Menon, Sujith V'
 
-from approximate_vertex_cover import dominating_set
+from code.approximate_dominating_set import dominating_set
 
-def seed():
 
-    # get graph
-    from read_graph import read_graph
-    G = read_graph("data/CA-GrQc.txt")
+def seed(G, number_of_initial_affected_nodes, time_limit):
 
-    print "Number of nodes: ", len(G.nodes())
+    ds = dominating_set(G)
+    current_infected_nodes = []
 
-    v=dominating_set(G)
-    v10=[]
-
-    for i in range(0,10,1):
-        v10.append(v[i])
-
-    print "\nInitial 10 nodes selected from dominating set: ", v10
-
-    current_infected_nodes = v10
-    time = int(raw_input("\nEnter time elapsed : "))
+    for i in range(0, number_of_initial_affected_nodes, 1):
+        current_infected_nodes.append(ds[i])
 
     infected_nodes = []
     infected_nodes.extend(current_infected_nodes)
@@ -29,10 +19,15 @@ def seed():
     x_cor.append(0)
     y_cor.append(len(infected_nodes))
 
+    print "Graph details \n"
+    print "Graph size : ", len(G)
+    print "Number of initial affected nodes : ", number_of_initial_affected_nodes
+    print "Initial affected nodes : ", infected_nodes
+
     print ""
     print "Time", "\t", "Number of infected nodes"
 
-    for t in range(0, time):
+    for t in range(0, time_limit):
         temp = set()
         for x in current_infected_nodes:
             temp = temp.union(set(G.neighbors(x)))
@@ -56,18 +51,22 @@ def seed():
     print "\nSafe nodes : ", safe_nodes
     print "\nInfected nodes : ", infected_nodes
 
-    from draw_graph import draw_graph
-    draw_graph(G, nodes_list1=infected_nodes, nodes_list2=safe_nodes, edge_list1=G.edges(), edge_list2=None)
+    #from draw_graph import draw_graph
+    #draw_graph(G, nodes_list1=infected_nodes, nodes_list2=safe_nodes, edge_list1=G.edges(), edge_list2=None)
 
-    #from draw_graph import draw_curve
-    #draw_curve(x_cor, y_cor)
-
-    # draw the graph
-    #from draw_graph import draw_graph_1
-    #draw_graph_1(G, safe_nodes, infected_nodes, G.edges(), None)
+    from draw_graph import draw_curve
+    draw_curve(x_cor, y_cor)
 
 
-seed()
+if __name__ == '__main__' :
+    # get graph
+    from read_graph import read_graph
+    G = read_graph("data/CA-GrQc.txt")
+
+    num = int(raw_input("Enter number of initial affected nodes : "))
+    time = int(raw_input("Enter time limit : "))
+
+    seed(G, num, time)
 
 
 

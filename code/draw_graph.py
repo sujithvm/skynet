@@ -40,6 +40,6 @@ def draw_graph(G, nodes_list1, nodes_list2, edge_list1, edge_list2):
 
 def draw_curve(x, y):
     plt.plot(x, y)
-    plt.axis([0, 100, 0, 6000])
+    plt.axis([0, 30, 0, 6000])
 
     plt.show()

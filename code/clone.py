@@ -1,14 +1,14 @@
 __author__ = 'Archana V Menon, Sujith V'
 
-from read_graph import read_graph
-from approximate_vertex_cover import approximate_vertex_cover_2
+from test_graphs import test_graph2
+from approximate_dominating_set import dominating_set
 from fibonacci import fibonacci
 
 # get graph
-G = read_graph("data/roadNet-CA.txt")
+G = test_graph2()
 
 # find approximate vertex cover
-vertex_cover = approximate_vertex_cover_2(G)
+vertex_cover = dominating_set(G)
 
 # generate fibonacci series
 fib = fibonacci(len(vertex_cover))
@@ -53,6 +53,7 @@ for entry in spread_list:
     print entry
 
 
-from draw_graph import draw_graph
-draw_graph(G, spread_list)
+# draw graph
+# from draw_graph import draw_graph
+# draw_graph(G, spread_list)
 
