@@ -56,11 +56,11 @@ def seed(G):
         if (x in safe_nodes):
             safe_nodes.remove(x)
 
-    print "\nSafe nodes : ", safe_nodes
-    print "\nInfected nodes : ", infected_nodes
+    # print "\nSafe nodes : ", safe_nodes
+    # print "\nInfected nodes : ", infected_nodes
 
-    #from draw_graph import draw_graph
-    #draw_graph(G, nodes_list1=infected_nodes, nodes_list2=safe_nodes, edge_list1=G.edges(), edge_list2=None)
+    # from draw_graph import draw_graph
+    # draw_graph(G, nodes_list1=infected_nodes, nodes_list2=safe_nodes, edge_list1=G.edges(), edge_list2=None)
 
     from draw_graph import draw_curve
     draw_curve(x_cor, y_cor)
