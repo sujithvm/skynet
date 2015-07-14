@@ -1,15 +1,18 @@
 __author__ = 'Archana V Menon, Sujith V'
 
+import networkx as nx
 from code.approximate_dominating_set import dominating_set
 
+def seed(G):
 
-def seed(G, number_of_initial_affected_nodes, time_limit):
-
-    ds = dominating_set(G)
     current_infected_nodes = []
 
-    for i in range(0, number_of_initial_affected_nodes, 1):
-        current_infected_nodes.append(ds[i])
+    disjoint_graphs = nx.connected_component_subgraphs(G)
+    for cc in disjoint_graphs :
+        ds = dominating_set(cc)
+        current_infected_nodes.append(ds[0])
+
+    number_of_initial_affected_nodes = len(current_infected_nodes)
 
     infected_nodes = []
     infected_nodes.extend(current_infected_nodes)
@@ -19,15 +22,19 @@ def seed(G, number_of_initial_affected_nodes, time_limit):
     x_cor.append(0)
     y_cor.append(len(infected_nodes))
 
-    print "Graph details \n"
+    print "\nGraph details \n"
     print "Graph size : ", len(G)
+    print "Number of disjoint graphs : ", len(disjoint_graphs)
     print "Number of initial affected nodes : ", number_of_initial_affected_nodes
     print "Initial affected nodes : ", infected_nodes
 
     print ""
     print "Time", "\t", "Number of infected nodes"
 
-    for t in range(0, time_limit):
+    time = 0
+    print time, "\t\t", len(infected_nodes)
+
+    while len(infected_nodes) != len(G) :
         temp = set()
         for x in current_infected_nodes:
             temp = temp.union(set(G.neighbors(x)))
@@ -37,11 +44,12 @@ def seed(G, number_of_initial_affected_nodes, time_limit):
             if not x in infected_nodes:
                 infected_nodes.append(x)
 
-        print t + 1, "\t\t", len(infected_nodes)
+        print time + 1, "\t\t", len(infected_nodes)
 
-        x_cor.append(t + 1)
+        x_cor.append(time + 1)
         y_cor.append(len(infected_nodes))
 
+        time += 1
 
     safe_nodes = G.nodes()
     for x in infected_nodes:
@@ -63,10 +71,7 @@ if __name__ == '__main__' :
     from read_graph import read_graph
     G = read_graph("data/CA-GrQc.txt")
 
-    num = int(raw_input("Enter number of initial affected nodes : "))
-    time = int(raw_input("Enter time limit : "))
-
-    seed(G, num, time)
+    seed(G)
 
 
 
