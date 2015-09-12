@@ -1,7 +1,7 @@
 __author__ = 'Archana V Menon, Sujith V'
 
 import networkx as nx
-from code.approximate_dominating_set import dominating_set
+from approximate_dominating_set import dominating_set
 
 def seed(G):
 

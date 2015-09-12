@@ -49,7 +49,7 @@ if __name__ == "__main__":
     # from read_graph import read_graph
     # G = read_graph("data/CA-GrQc.txt")
 
-    from code.test_graphs import test_graph2
+    from test_graphs import test_graph2
 
     G = test_graph2()
 
