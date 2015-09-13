@@ -1,17 +1,15 @@
+build: false
+
 environment:
   matrix:
-    - PYTHON: "C:/Python27"
-
-init:
-  - "ECHO %PYTHON%"
+    - PYTHON: "C:\\Python27"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "32"
 
 install:
-  - set PATH=C:\%PYTHON%\scripts;%PATH%
-  - pip install networkx
-  - pip install matplotlib
+  - "%PYTHON%/Scripts/pip.exe install networkx"
+  - "%PYTHON%/Scripts/pip.exe install matplotlib"
 
-build_script:
+test_script:
   - cd code
   - python seeding.py
-
-test_script: []
