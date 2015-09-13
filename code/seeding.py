@@ -7,8 +7,11 @@ def seed(G):
 
     current_infected_nodes = []
 
-    disjoint_graphs = nx.connected_component_subgraphs(G)
+    disjoint_graphs_gen = nx.connected_component_subgraphs(G)
+    disjoint_graphs = list(disjoint_graphs_gen)
+
     for cc in disjoint_graphs :
+
         ds = dominating_set(cc)
         current_infected_nodes.append(ds[0])
 
@@ -23,7 +26,7 @@ def seed(G):
     y_cor.append(len(infected_nodes))
 
     print "\nGraph details \n"
-    print "Graph size : ", len(G)
+    print "Graph size : ", len(G.nodes())
     print "Number of disjoint graphs : ", len(disjoint_graphs)
     print "Number of initial affected nodes : ", number_of_initial_affected_nodes
     print "Initial affected nodes : ", infected_nodes
