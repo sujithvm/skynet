@@ -72,6 +72,9 @@ if __name__ == "__main__":
 
     # draw graph
     print "\n\nDrawing graph. Might take some time ..."
-    from draw_graph import draw_graph
-    draw_graph(G, nodes_list1, nodes_list2, G.edges(), None)
+    #from draw_graph import draw_graph
+    #draw_graph(G, nodes_list1, nodes_list2, G.edges(), None)
+
+    import networkx as nx
+    nx.draw_graphviz(G)
 

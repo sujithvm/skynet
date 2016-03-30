@@ -40,3 +40,12 @@ Navigate to `skynet/code`
 ```
 > python seeding.py
 ```
+
+
+for pygraphviz :
+```
+sudo apt-get install -y graphviz libgraphviz-dev pkg-config python-pip
+sudo pip install pygraphviz --install-option="--include-path=/usr/include/graphviz" --install-option="--library-path=/usr/lib/graphviz/"
+
+Read : https://github.com/pygraphviz/pygraphviz/issues/71
+```
