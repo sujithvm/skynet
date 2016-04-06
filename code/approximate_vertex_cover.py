@@ -1,6 +1,6 @@
 __author__ = 'Archana V Menon, Sujith V'
 
-def approximate_vertex_cover(G):
+def vertex_cover(G):
 
     """
     Finds a 2-approximation for a minimal vertex cover of the specified
@@ -37,6 +37,11 @@ def approximate_vertex_cover(G):
         vertex_cover.append(u)
         vertex_cover.append(v)
 
+        # single node
+        if u == v :
+            graph.remove_node(u)
+            continue
+
         # delete the nodes from graph
         graph.remove_node(u)
         graph.remove_node(v)
@@ -58,7 +63,7 @@ if __name__ == "__main__":
     G = test_graph2()
 
     # find approximate vertex cover
-    vc = approximate_vertex_cover(G)
+    vc = vertex_cover(G)
 
     print "Approximate vertex cover \n"
     print "Graph size : ", len(G)

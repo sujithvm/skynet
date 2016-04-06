@@ -6,13 +6,13 @@ from pso import pso
 def banana(x):
     x1 = x[0]
     x2 = x[1]
-    return x1 - x2
+    return x2 - x1
 
-
-lb = [0, 10]
-ub = [10, 100]
+lb = [-3, -1]
+ub = [2, 6]
 
 xopt, fopt = pso(banana, lb, ub)
+
 
 print xopt
 

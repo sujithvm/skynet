@@ -38,9 +38,14 @@ def draw_graph(G, nodes_list1, nodes_list2, edge_list1, edge_list2):
     plt.show() # display
 
 
-def draw_curve(x, y):
-    plt.plot(x, y)
-    plt.axis([0, 30, 0, 6000])
+def draw_curve(x1, y1, lab_1, x2, y2, lab_2, x3, y3, lab_3):
+    l1 = plt.plot(x1, y1, label=lab_1)
+    l2 = plt.plot(x2, y2, label=lab_2)
+    l3 = plt.plot(x3, y3, label=lab_3)
+
+    plt.legend()
+
+    plt.axis([0, 20, 0, 6000])
     plt.xlabel("time/iterations")
     plt.ylabel("Number of nodes infected")
 

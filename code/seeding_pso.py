@@ -5,6 +5,25 @@ from approximate_dominating_set import dominating_set
 from approximate_vertex_cover import vertex_cover
 
 from random import choice
+from random import randint
+
+from pso import pso
+
+BENEFIT_LOWER = 30
+BENEFIT_UPPER = 70
+COST_LOWER = 20
+COST_UPPER = 50
+
+OPT_BENEFIT_LOWER = 50
+OPT_BENEFIT_UPPER = 60
+OPT_COST_LOWER = 20
+OPT_COST_UPPER = 30
+
+THRESHOLD_DIFF = 400
+
+INITIAL_COST = 3 * COST_UPPER
+
+USE_PSO = False
 
 '''
 type :
@@ -14,25 +33,68 @@ type :
     4 - random
 '''
 
+pso_node_map = {}
+
+D = 1
+def opt_func(x):
+    x1 = x[0]
+    x2 = x[1]
+
+    #return x2 - D * x1
+    return x2 -  x1
+
+lb = [OPT_BENEFIT_LOWER, OPT_COST_LOWER]
+ub = [OPT_BENEFIT_UPPER, OPT_COST_UPPER]
+
+
+def optimize(G, nodes) :
+
+    nv = []
+    for node in nodes :
+        D = G.degree(node)
+        val = -opt_func( [G.node[node]["benefit"], G.node[node]["cost"]] )
+
+        #if val > pso_node_map[D] :
+        #    nv.append([node, D])
+        nv.append([node, D])
+
+    # sort by degree
+    nv.sort(key=lambda x: x[1], reverse=True)
+
+    print nv
+
+    print " "
+
+    filtered_nodes = []
+    cost = INITIAL_COST
+    for entry in nv :
+        node = entry[0]
+        node_cost = G.node[node]["cost"]
+
+        if cost - node_cost >= 0 :
+            filtered_nodes.append(node)
+            cost -= node_cost
+
+    return filtered_nodes
+
+
 def seed(G, type):
 
     current_infected_nodes = []
 
-    disjoint_graphs_gen = nx.connected_component_subgraphs(G)
-    disjoint_graphs = list(disjoint_graphs_gen)
+    if type == 1 :
+        ds = dominating_set(G)
+        if USE_PSO : current_infected_nodes.extend(optimize(G, ds))
+        else : current_infected_nodes.append(ds[0])
 
-    for cc in disjoint_graphs :
-        if type == 1 :
-            ds = dominating_set(cc)
-            current_infected_nodes.append(ds[0])
+    elif type == 2 :
+        vc = vertex_cover(G)
+        if USE_PSO : current_infected_nodes.extend(optimize(G, vc))
+        else : current_infected_nodes.append(vc[0])
 
-        elif type == 2 :
-            vc = vertex_cover(cc)
-            current_infected_nodes.append(vc[0])
-
-        elif type == 3 :
-            rand_node = choice(cc.nodes())
-            current_infected_nodes.append(rand_node)
+    elif type == 3 :
+        rand_node = choice(G.nodes())
+        current_infected_nodes.append(rand_node)
 
     number_of_initial_affected_nodes = len(current_infected_nodes)
 
@@ -46,7 +108,6 @@ def seed(G, type):
 
     print "\nGraph details \n"
     print "Graph size : ", len(G.nodes())
-    print "Number of disjoint graphs : ", len(disjoint_graphs)
     print "Number of initial affected nodes : ", number_of_initial_affected_nodes
     print "Initial affected nodes : ", infected_nodes
 
@@ -90,11 +151,33 @@ def seed(G, type):
 
 
 
+
+
+
+
+
 if __name__ == '__main__' :
     # get graph
     from read_graph import read_graph
-    G = read_graph("data/CA-GrQc.txt")
+    G1 = read_graph("data/CA-GrQc.txt")
 
+    G = max(nx.connected_component_subgraphs(G1), key=len)
+
+    degrees = G.degree()
+    max_deg = G.degree( max(degrees, key=degrees.get) )
+
+    for d in xrange(1, max_deg + 1) :
+        D = d
+        xopt, fopt = pso(opt_func, lb, ub)
+
+        pso_node_map[d] = -fopt
+        print d
+
+
+
+    for n in G.nodes() :
+        G.node[n]['cost'] = randint(COST_LOWER, COST_UPPER)
+        G.node[n]['benefit'] = randint(BENEFIT_LOWER, BENEFIT_UPPER)
 
     ds_x_cor, ds_y_cor = seed(G, 1)
     vc_x_cor, vc_y_cor = seed(G, 2)
