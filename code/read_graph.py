@@ -1,6 +1,7 @@
 __author__ = 'Archana V Menon, Sujith V'
 
 import networkx as nx
+import os
 
 def read_graph(file_path):
 
@@ -14,6 +15,7 @@ def read_graph(file_path):
     edge_list = []
 
     # input file
+
     input_file = open(file_path)
 
     # process graph edges

@@ -149,13 +149,6 @@ def seed(G, type):
     return x_cor, y_cor
 
 
-
-
-
-
-
-
-
 if __name__ == '__main__' :
     # get graph
     from read_graph import read_graph
